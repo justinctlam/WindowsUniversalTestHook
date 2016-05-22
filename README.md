@@ -9,10 +9,6 @@ This project shows how you can create a test hook system for your Windows Univer
 
 The purpose for test hooks allows a developer to quick get into a state so they can debug or iterate on a feature. This helps save valuable developer time when trying to get into a state that takes a long time and speeds up iteration time.
 
-## Contributors
-
-Let people know how they can dive into the project, include important links to things like issue trackers, irc, twitter accounts if applicable.
-
 ## License
 
 MIT License
