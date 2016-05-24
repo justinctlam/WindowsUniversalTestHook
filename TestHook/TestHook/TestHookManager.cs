@@ -7,18 +7,21 @@ using System.Threading;
 namespace TestHook.TestHook
 {
     /// <summary>
-    /// Test Hook manager used to build and register your test hooks for the app.
+    /// Test Hook manager used to build and register your test hooks for the app
     /// </summary>
     public class TestHookManager
     {
         /// <summary>
-        /// Example constants for control IDs.
+        /// Example constants for control IDs
         /// </summary>
         public static string EventTestId = "EventTestId";
         public static string BoolTestId = "BoolTestId";
         public static string IntTestId = "IntTestId";
         public static string EnumTestId = "EnumTestId";
 
+        /// <summary>
+        /// Sample enum
+        /// </summary>
         public enum TestEnum
         {
             Test1,
@@ -26,6 +29,9 @@ namespace TestHook.TestHook
             Test3
         }
 
+        /// <summary>
+        /// Test hook groups
+        /// </summary>
         public enum Groups
         {
             None,
@@ -33,27 +39,27 @@ namespace TestHook.TestHook
         }
 
         /// <summary>
-        /// Returns a readonly dictionary of the test hook groups.
+        /// Returns a readonly dictionary of the test hook groups
         /// </summary>
         public IReadOnlyDictionary<Groups, TestHookGroup> TestHookGroups => _testHookGroups;
 
         /// <summary>
-        /// Stores all the test hook groups.
+        /// Stores all the test hook groups
         /// </summary>
         private readonly ConcurrentDictionary<Groups, TestHookGroup> _testHookGroups =
             new ConcurrentDictionary<Groups, TestHookGroup>();
 
         /// <summary>
-        /// Lazy creation of the test hook manager singleton .
+        /// Lazy creation of the test hook manager singleton
         /// </summary>
         private static readonly Lazy<TestHookManager> TestHookManagerInstance =
             new Lazy<TestHookManager>(() => new TestHookManager());
 
         /// <summary>
-        /// Gets the instance of the test hook manager.
+        /// Gets the instance of the test hook manager
         /// </summary>
         public static TestHookManager Instance => TestHookManagerInstance.Value;
-        
+
         /// <summary>
         /// Constructor, private because it is a singleton
         /// </summary>
@@ -62,7 +68,7 @@ namespace TestHook.TestHook
         }
 
         /// <summary>
-        /// Registers all the test hook into the manager, debug only.
+        /// Registers all the test hook into the manager, debug only
         /// </summary>
         [Conditional("DEBUG")]
         public void RegisterTestHooks()
@@ -71,7 +77,7 @@ namespace TestHook.TestHook
         }
 
         /// <summary>
-        /// Gets the description for the test hook group.
+        /// Gets the description for the test hook group
         /// </summary>
         /// <param name="group">A test hook group</param>
         /// <returns>A description string</returns>
@@ -81,7 +87,7 @@ namespace TestHook.TestHook
         }
 
         /// <summary>
-        /// Tries to get a test hook group for the given ID.
+        /// Tries to get a test hook group for the given ID
         /// </summary>
         /// <param name="testHookGroupId">Test hook group ID</param>
         /// <returns>A test hook group</returns>
@@ -104,7 +110,7 @@ namespace TestHook.TestHook
         }
 
         /// <summary>
-        /// Build a group of test hooks.
+        /// Build a group of test hooks
         /// </summary>
         [Conditional("DEBUG")]
         private void BuildTestHooks()

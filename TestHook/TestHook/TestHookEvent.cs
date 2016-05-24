@@ -2,39 +2,62 @@
 
 namespace TestHook.TestHook
 {
-
+    /// <summary>
+    /// Test hook for trigger events
+    /// </summary>
     public class TestHookEvent : ITestHookModel
     {
-        public string DisplayName { get; }
-
-        public string Id { get; }
-
-        public int DisplayOrderIndex { get; set; }
-
-        public bool IsEnabled { get; set; }
-
-        public bool ShowIsEnabled { get; set; }
-
-        public string TemplateName => "TestHookEventTemplate";
-
-        public object Context { get; set; }
-
-        public delegate void CustomHandler(object context);
-        public event CustomHandler OnInvoke;
         private ICommand _customCommand;
 
-        public TestHookEvent(string id, string name, bool showIsEnabled = false)
-        {
-            Id = id;
-            DisplayName = name;
-            IsEnabled = false;
-            ShowIsEnabled = showIsEnabled;
-        }
+        /// <summary>
+        /// The display name
+        /// </summary>
+        public string DisplayName { get; }
 
-        public void RestoreDefaultState()
-        {
-        }
+        /// <summary>
+        /// Unique reference ID
+        /// </summary>
+        public string Id { get; }
 
+        /// <summary>
+        /// Display order in the UI
+        /// </summary>
+        public int DisplayOrderIndex { get; set; }
+
+        /// <summary>
+        /// Set enabled/disabled
+        /// </summary>
+        public bool IsEnabled { get; set; }
+
+        /// <summary>
+        /// Should this have an enabled/disabled UI
+        /// </summary>
+        public bool ShowIsEnabled { get; set; }
+
+        /// <summary>
+        /// Template name
+        /// </summary>
+        public string TemplateName => "TestHookEventTemplate";
+
+        /// <summary>
+        /// Context for the event
+        /// </summary>
+        public object Context { get; set; }
+
+        /// <summary>
+        /// Command handler
+        /// </summary>
+        /// <param name="context">Parameters</param>
+        public delegate void CustomHandler(object context);
+
+        /// <summary>
+        /// Command event
+        /// </summary>
+        public event CustomHandler OnInvoke;
+
+        /// <summary>
+        /// Command to execute
+        /// </summary>
         public ICommand ExecuteCommand
         {
             get
@@ -46,6 +69,27 @@ namespace TestHook.TestHook
 
                 return null;
             }
+        }
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="id">Reference ID</param>
+        /// <param name="displayName">UI display name</param>
+        /// <param name="showIsEnabled">Should show enabled/disabled UI.</param>
+        public TestHookEvent(string id, string displayName, bool showIsEnabled = false)
+        {
+            Id = id;
+            DisplayName = displayName;
+            IsEnabled = false;
+            ShowIsEnabled = showIsEnabled;
+        }
+
+        /// <summary>
+        /// Restore to default
+        /// </summary>
+        public void RestoreDefaultState()
+        {
         }
     }
 }

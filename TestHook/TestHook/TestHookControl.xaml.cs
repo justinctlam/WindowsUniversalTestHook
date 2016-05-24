@@ -4,17 +4,27 @@ using Windows.UI.Xaml.Controls;
 namespace TestHook.TestHook
 {
     /// <summary>
-    /// Template selector for the different types of test hooks.
+    /// Template selector for the different types of test hooks
     /// </summary>
     public class TestHookDataTemplateSelector : DataTemplateSelector
     {
         private readonly TestHookControl _parent;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="parent">TestHookControl</param>
         public TestHookDataTemplateSelector(TestHookControl parent)
         {
            _parent = parent;
         }
 
+        /// <summary>
+        /// Select the template for use
+        /// </summary>
+        /// <param name="item">ITestHookModel</param>
+        /// <param name="container">Container parameter</param>
+        /// <returns>DataTemplate</returns>
         protected override DataTemplate SelectTemplateCore(object item, DependencyObject container)
         {
             var model = item as ITestHookModel;
@@ -29,7 +39,7 @@ namespace TestHook.TestHook
     }
 
     /// <summary>
-    /// Test hook control class.
+    /// Test hook control class
     /// </summary>
     public partial class TestHookControl : UserControl
     {
@@ -37,7 +47,7 @@ namespace TestHook.TestHook
         private TestHookManager.Groups _currentGroup;
 
         /// <summary>
-        /// Constructor.
+        /// Constructor
         /// </summary>
         public TestHookControl()
         {
@@ -46,7 +56,7 @@ namespace TestHook.TestHook
         }
 
         /// <summary>
-        /// Initialize.
+        /// Initialize
         /// </summary>
         public void Initialize()
         {
@@ -54,7 +64,7 @@ namespace TestHook.TestHook
         }
 
         /// <summary>
-        /// Go back to root menu.
+        /// Go back to root menu
         /// </summary>
         private void GoToRoot()
         {
@@ -82,7 +92,7 @@ namespace TestHook.TestHook
         }
 
         /// <summary>
-        /// Event when a group is clicked.
+        /// Event when a group is clicked
         /// </summary>
         /// <param name="sender">Sender object</param>
         /// <param name="e">RoutedEventArgs parameter</param>
@@ -120,7 +130,7 @@ namespace TestHook.TestHook
         }
 
         /// <summary>
-        /// Event when restore button is pressed.
+        /// Event when restore button is pressed
         /// </summary>
         /// <param name="sender">Sender object</param>
         /// <param name="e">RoutedEventArgs parameter</param>
@@ -130,7 +140,7 @@ namespace TestHook.TestHook
         }
 
         /// <summary>
-        /// Event when click back is pressed.
+        /// Event when click back is pressed
         /// </summary>
         /// <param name="sender">Sender object</param>
         /// <param name="e">RoutedEventArgs parameter</param>

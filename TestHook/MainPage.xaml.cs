@@ -6,6 +6,9 @@ namespace TestHook
 {
     public sealed partial class MainPage : Page
     {
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public MainPage()
         {
             InitializeComponent();
@@ -14,21 +17,35 @@ namespace TestHook
             var eventHook = group?.TestHooks[TestHookManager.EventTestId] as TestHookEvent;
             if (eventHook != null)
             {
-                eventHook.OnInvoke += EventHook_OnInvoke;
+                eventHook.OnInvoke += OnEventHookInvoke;
             }
         }
 
-        private void EventHook_OnInvoke(object context)
+        /// <summary>
+        /// Event triggered by a test hook event
+        /// </summary>
+        /// <param name="context"></param>
+        private void OnEventHookInvoke(object context)
         {
             OnTestExecute(null, null);
         }
 
+        /// <summary>
+        /// Open the splitview pane
+        /// </summary>
+        /// <param name="sender">Sender object</param>
+        /// <param name="e">RoutedEventArgs parameter</param>
         private void OnOpenTestHookPageClick(object sender, RoutedEventArgs e)
         {
             MySplitView.IsPaneOpen = true;
             MyTestHookControl.Initialize();
         }
 
+        /// <summary>
+        /// Execute test event
+        /// </summary>
+        /// <param name="sender">Sender object</param>
+        /// <param name="e">RoutedEventArgs parameter</param>
         private void OnTestExecute(object sender, RoutedEventArgs e)
         {
             var group = TestHookManager.Instance.TestHookGroups[TestHookManager.Groups.TestGroup];
